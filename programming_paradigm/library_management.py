@@ -6,7 +6,7 @@ class Book:
 
 
 class Library:
-    def __init__(self, books):
+    def __init__(self):
         if books is None:
             books = []
         self._books = books
