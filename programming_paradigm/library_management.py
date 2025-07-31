@@ -1,5 +1,5 @@
 class Book:
-    def __init__(self, title, author, checked_out):
+    def __init__(self, title, author, checked_out=False):
         self.title = title
         self.author = author
         self._is_checked_out = checked_out
@@ -21,9 +21,10 @@ class Library:
         else:
             return f"{book} not available"
     
-    def return_book(self, book):
-        self.books += book
-        return self.books
+    def return_book(self, title):
+        for book in self._books:
+            if book.title == title and book._is_checked_out:
+                book._is_checked_out = False
     
     def list_available_books(self):
         return self.books
