@@ -7,24 +7,21 @@ class Book:
 
 class Library:
     def __init__(self):
-        if books is None:
-            books = []
-        self._books = books
+        self.books = []
     
-    def add_book(self, books):
-        self._books.append(book)
+    def add_book(self, book):
+        self.books.append(book)
 
-    def check_out_book(self, tittle):
-        for book in self._books:
-            if book.tittle == tittle and book in self.books:
-            self.books -= book
-        else:
-            return f"{book} not available"
+    def check_out_book(self, title):
+        for book in self.books:
+            if book.title == title and book._is_checked_out:
+                self.books.remove(book)
     
     def return_book(self, title):
-        for book in self._books:
+        for book in self.books:
             if book.title == title and book._is_checked_out:
                 book._is_checked_out = False
+                self.books.append(book)
     
     def list_available_books(self):
         return self.books
