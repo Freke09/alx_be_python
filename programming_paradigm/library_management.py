@@ -3,6 +3,9 @@ class Book:
         self.title = title
         self.author = author
         self._is_checked_out = checked_out
+    
+    def __repr__(self):
+        return f"{self.title} by {self.author}"
 
 
 class Library:
@@ -14,14 +17,15 @@ class Library:
 
     def check_out_book(self, title):
         for book in self.books:
-            if book.title == title and book._is_checked_out:
-                self.books.remove(book)
+            if book.title == title and not book._is_checked_out:
+                book._is_checked_out = True
     
     def return_book(self, title):
         for book in self.books:
             if book.title == title and book._is_checked_out:
                 book._is_checked_out = False
-                self.books.append(book)
     
     def list_available_books(self):
-        return self.books
+        for book in self.books:
+            if not book._is_checked_out:
+                print(f"{book}")
